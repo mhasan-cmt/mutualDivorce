@@ -1,0 +1,24 @@
+<form action="/submit-divorce-form" method="post">
+  <h2>Mutual Divorce Form</h2>
+  <div class="form-group">
+    <label for="husbandName">Husband's Name:</label>
+    <input type="text" class="form-control" id="husbandName" name="husbandName" required>
+  </div>
+  <div class="form-group">
+    <label for="wifeName">Wife's Name:</label>
+    <input type="text" class="form-control" id="wifeName" name="wifeName" required>
+  </div>
+  <div class="form-group">
+    <label for="marriageDate">Marriage Date:</label>
+    <input type="date" class="form-control" id="marriageDate" name="marriageDate" required>
+  </div>
+  <div class="form-group">
+    <label for="reasonForDivorce">Reason for Divorce:</label>
+    <textarea class="form-control" id="reasonForDivorce" name="reasonForDivorce" rows="3" required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="agreement">Agreement:</label>
+    <textarea class="form-control" id="agreement" name="agreement" rows="3" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
