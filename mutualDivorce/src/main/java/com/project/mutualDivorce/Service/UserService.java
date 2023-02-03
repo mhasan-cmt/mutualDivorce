@@ -1,5 +1,6 @@
 package com.project.mutualDivorce.Service;
 
+import com.project.mutualDivorce.Dto.UserDto;
 import com.project.mutualDivorce.Entity.User;
 import com.project.mutualDivorce.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,14 @@ public class UserService {
     }
     public void deleteById(long id){
         userRepository.deleteById(id);
+    }
+    public User createNewUser(UserDto userFormDto){
+        User userDto = new User();
+        userDto.setAfm(userFormDto.getAfm());
+        userDto.setAmka(userFormDto.getAmka());
+        userDto.setSurname(userFormDto.getSurname());
+        userDto.setRole(userFormDto.getRole());
+        userDto.setId(userFormDto.getId());
+        return userRepository.save(userDto);
     }
 }

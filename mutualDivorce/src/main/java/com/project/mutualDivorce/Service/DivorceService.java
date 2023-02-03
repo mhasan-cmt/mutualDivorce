@@ -1,5 +1,6 @@
 package com.project.mutualDivorce.Service;
 
+import com.project.mutualDivorce.Dto.DivorceFormDto;
 import com.project.mutualDivorce.Entity.Divorce;
 import com.project.mutualDivorce.Repository.DivorceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class DivorceService {
     public List<Divorce> findAll(){
         return divorceRepository.findAll();
     }
-   public Optional<Divorce> findById(long id){
+    public Optional<Divorce> findById(long id){
        return divorceRepository.findById(id);
    }
     public Divorce save(Divorce divorce){
@@ -28,5 +29,16 @@ public class DivorceService {
     }
     public void deleteById(long id){
         divorceRepository.deleteById(id);
+    }
+
+    public Divorce createDivorceForm(DivorceFormDto divorceFormDto){
+       Divorce divorceForm = new Divorce();
+       divorceForm.setHusbandAfm(divorceFormDto.getHusbandAfm());
+       divorceForm.setHusbandAmka(divorceFormDto.getHusbandAmka());
+       divorceForm.setHusbandSurname(divorceFormDto.getHusbandSurname());
+       divorceForm.setWifeAfm(divorceFormDto.getWifeAfm());
+       divorceForm.setWifeAmka(divorceFormDto.getWifeAmka());
+       divorceForm.setWifeSurname(divorceFormDto.getWifeSurname());
+        return divorceRepository.save(divorceForm);
     }
 }

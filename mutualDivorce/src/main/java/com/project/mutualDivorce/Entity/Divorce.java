@@ -9,6 +9,17 @@ public class Divorce {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String husbandAfm;
+    @Column(name = "HusbandAmka")
+    private String husbandAmka;
+    @Column(name = "HusbandSurname")
+    private String husbandSurname;
+    @Column(name = "WifeAmka")
+    private String wifeAmka;
+    private String wifeAfm;
+    @Column(name = "WifeSurname")
+    private String wifeSurname;
+
     @Column(name = "epimeleia_Paidiwn")
     private String epimeleiaPaidiwn;
     @Column(name = "akiniti_Periousia")
@@ -23,6 +34,54 @@ public class Divorce {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public String getHusbandAfm() {
+        return husbandAfm;
+    }
+
+    public void setHusbandAfm(String husbandAfm) {
+        this.husbandAfm = husbandAfm;
+    }
+
+    public String getHusbandAmka() {
+        return husbandAmka;
+    }
+
+    public void setHusbandAmka(String husbandAmka) {
+        this.husbandAmka = husbandAmka;
+    }
+
+    public String getHusbandSurname() {
+        return husbandSurname;
+    }
+
+    public void setHusbandSurname(String husbandSurname) {
+        this.husbandSurname = husbandSurname;
+    }
+
+    public String getWifeAmka() {
+        return wifeAmka;
+    }
+
+    public void setWifeAmka(String wifeAmka) {
+        this.wifeAmka = wifeAmka;
+    }
+
+    public String getWifeAfm() {
+        return wifeAfm;
+    }
+
+    public void setWifeAfm(String wifeAfm) {
+        this.wifeAfm = wifeAfm;
+    }
+
+    public String getWifeSurname() {
+        return wifeSurname;
+    }
+
+    public void setWifeSurname(String wifeSurname) {
+        this.wifeSurname = wifeSurname;
+    }
 
     public Long getId() {
         return id;

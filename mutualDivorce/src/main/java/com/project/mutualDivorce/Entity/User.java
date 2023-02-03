@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-    //TODO: role parameter
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,12 @@ public class User {
     private int afm;
     @Column(name = "amka")
     private int amka;
-    @Column(name = "password")
-    private String password;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @Column(name = "role")
+    private int role;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Divorce> divorces;
 
     public Long getId() {
@@ -57,11 +59,19 @@ public class User {
         this.amka = amka;
     }
 
-    public String getPassword() {
-        return password;
+    public int getRole() {
+        return role;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    public List<Divorce> getDivorces() {
+        return divorces;
+    }
+
+    public void setDivorces(List<Divorce> divorces) {
+        this.divorces = divorces;
     }
 }

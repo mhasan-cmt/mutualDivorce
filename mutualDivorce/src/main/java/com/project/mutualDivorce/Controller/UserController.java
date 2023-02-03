@@ -1,8 +1,11 @@
 package com.project.mutualDivorce.Controller;
 
+import com.project.mutualDivorce.Dto.UserDto;
 import com.project.mutualDivorce.Entity.User;
 import com.project.mutualDivorce.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +28,7 @@ public class UserController {
     public Optional<User> findById(@PathVariable long id){
         return userService.findById(id);
     }
-    @PostMapping
+
     public User save(@RequestBody User user){
         return userService.save(user);
     }
@@ -37,5 +40,10 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable long id){
         userService.deleteById(id);
+    }
+    @PostMapping
+    public ResponseEntity<User> createNewUser(@RequestBody UserDto userDto){
+        User user = userService.createNewUser(userDto);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 }
