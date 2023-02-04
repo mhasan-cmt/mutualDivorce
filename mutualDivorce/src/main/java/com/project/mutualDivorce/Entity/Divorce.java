@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "divorces")
-public class Divorce {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public class Divorce {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    private String husbandAfm;
-    @Column(name = "HusbandAmka")
-    private String husbandAmka;
-    @Column(name = "HusbandSurname")
+        private String husbandAfm;
+        @Column(name = "HusbandAmka")
+        private String husbandAmka;
+        @Column(name = "HusbandSurname")
     private String husbandSurname;
     @Column(name = "WifeAmka")
     private String wifeAmka;
