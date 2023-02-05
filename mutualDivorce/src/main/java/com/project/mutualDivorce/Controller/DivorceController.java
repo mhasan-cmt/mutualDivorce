@@ -43,7 +43,7 @@ public class DivorceController {
         divorceService.deleteById(id);
     }
 
-    @PostMapping
+    @PostMapping(path = "/create-divorce-form")
     public ResponseEntity<Divorce> createDivorceForm(@RequestBody DivorceFormDto divorceFormDto) {
         Divorce divorce = divorceService.createDivorceForm(divorceFormDto);
         return new ResponseEntity<>(divorce, HttpStatus.CREATED);

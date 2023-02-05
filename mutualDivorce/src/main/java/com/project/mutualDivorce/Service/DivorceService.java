@@ -39,6 +39,8 @@ public class DivorceService {
        divorceForm.setWifeAfm(divorceFormDto.getWifeAfm());
        divorceForm.setWifeAmka(divorceFormDto.getWifeAmka());
        divorceForm.setWifeSurname(divorceFormDto.getWifeSurname());
-        return divorceRepository.save(divorceForm);
+       divorceForm = divorceRepository.save(divorceForm);
+        return divorceForm;
     }
+
 }

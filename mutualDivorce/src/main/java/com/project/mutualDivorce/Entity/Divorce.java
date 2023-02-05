@@ -9,27 +9,29 @@ import jakarta.persistence.*;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
+        @Column(name = "HusbandAfm")
         private String husbandAfm;
         @Column(name = "HusbandAmka")
         private String husbandAmka;
         @Column(name = "HusbandSurname")
-    private String husbandSurname;
-    @Column(name = "WifeAmka")
-    private String wifeAmka;
-    private String wifeAfm;
-    @Column(name = "WifeSurname")
-    private String wifeSurname;
+        private String husbandSurname;
+        @Column(name = "WifeAmka")
+        private String wifeAmka;
+        @Column(name = "WifeAfm")
+        private String wifeAfm;
+        @Column(name = "WifeSurname")
+        private String wifeSurname;
 
-    @Column(name = "epimeleia_Paidiwn")
-    private String epimeleiaPaidiwn;
-    @Column(name = "akiniti_Periousia")
-    private String akinitiPeriousia;
-    @Column(name = "logariasmoi_Trapezwn")
-    private String logariasmoiTrapezwn;
-    @Column(name = "idiotiki_xrisi")
-    private String ix;
-    @Column(name = "reason")
-    private String reason;
+        @Column(name = "epimeleia_Paidiwn")
+        private String epimeleiaPaidiwn;
+        @Column(name = "akiniti_Periousia")
+        private String akinitiPeriousia;
+        @Column(name = "logariasmoi_Trapezwn")
+        private String logariasmoiTrapezwn;
+        @Column(name = "idiotiki_xrisi")
+        private String ix;
+        @Column(name = "reason")
+        private String reason;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

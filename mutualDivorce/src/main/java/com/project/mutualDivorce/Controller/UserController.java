@@ -20,15 +20,19 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    @GetMapping
+    @GetMapping("/find-all")
     public List<User> findAll(){
+        System.out.println("find all users");
+
         return userService.findAll();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/id")
     public Optional<User> findById(@PathVariable long id){
+        System.out.println("find by id");
+
         return userService.findById(id);
     }
-
+    @PostMapping()
     public User save(@RequestBody User user){
         return userService.save(user);
     }
@@ -41,7 +45,7 @@ public class UserController {
     public void deleteById(@PathVariable long id){
         userService.deleteById(id);
     }
-    @PostMapping
+    @PostMapping("/addUser")
     public ResponseEntity<User> createNewUser(@RequestBody UserDto userDto){
         User user = userService.createNewUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);

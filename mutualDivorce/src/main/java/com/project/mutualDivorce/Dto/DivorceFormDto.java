@@ -24,7 +24,7 @@ public class DivorceFormDto implements Serializable {
     private final String reason;
     private final User user;
 
-    public DivorceFormDto(Long id, String husbandAfm, String husbandAmka, String husbandSurname, String wifeAmka, String wifeAfm, String wifeSurname, String epimeleiaPaidiwn, String akinitiPeriousia, String logariasmoiTrapezwn, String ix, String reason, User user) {
+    public DivorceFormDto(Long id, String reasonOfDivorce, String husbandAfm, String husbandAmka, String husbandSurname, String wifeAmka, String wifeAfm, String wifeSurname, String epimeleiaPaidiwn, String akinitiPeriousia, String logariasmoiTrapezwn, String ix, String reason, User user) {
         this.id = id;
         this.husbandAfm = husbandAfm;
         this.husbandAmka = husbandAmka;

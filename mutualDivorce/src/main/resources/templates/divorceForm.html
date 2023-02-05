@@ -1,24 +1,100 @@
-<form action="/submit-divorce-form" method="post">
-  <h2>Mutual Divorce Form</h2>
-  <div class="form-group">
-    <label for="husbandName">Husband's Name:</label>
-    <input type="text" class="form-control" id="husbandName" name="husbandName" required>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Divorce Application</title>
+  <style>
+    .form-container {
+      width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .form-field {
+      margin: 10px 0;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="text"],
+    textarea {
+      padding: 10px;
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+
+</head>
+<body>
+<div class="form-container">
+  <h2>Divorce Application</h2>
+  <form action="">
+    <div class = "form-field">
+    <label for="husbandAfm">Husband's afm:</label>
+    <input type="text" id="husbandAfm" name="husbandAfm" >
   </div>
-  <div class="form-group">
-    <label for="wifeName">Wife's Name:</label>
-    <input type="text" class="form-control" id="wifeName" name="wifeName" required>
+    <div class = "form-field">
+      <label for="husbandAmka">Husband's amka:</label>
+      <input type="text" id="husbandAmka" name="husbandAmka" >
+    </div>
+    <div class = "form-field">
+      <label for="husbandSurname">Husband's surname:</label>
+      <input type="text" id="husbandSurname" name="husbandSurname" >
+    </div>
+
+  <div class="form-field">
+    <label for="wifeAfm">Wife's afm:</label>
+    <input type="text" id="wifeAfm" name="wifeAfm" >
   </div>
-  <div class="form-group">
-    <label for="marriageDate">Marriage Date:</label>
-    <input type="date" class="form-control" id="marriageDate" name="marriageDate" required>
+
+  <div class="form-field">
+    <label for="wifeAmka">Wife's amka:</label>
+    <input type="text"  id="wifeAmka" name="wifeAmka" >
   </div>
-  <div class="form-group">
-    <label for="reasonForDivorce">Reason for Divorce:</label>
-    <textarea class="form-control" id="reasonForDivorce" name="reasonForDivorce" rows="3" required></textarea>
+    <div class="form-field">
+      <label for="wifeSurname">Wife's surname:</label>
+      <input type="text"  id="wifeSurname" name="wifeSurname" >
+    </div>
+  <div class="form-field">
+    <label for="reason">Λόγος χωρισμού:</label>
+    <textarea class="form-control" id="reason" name="reason" rows="3" ></textarea>
   </div>
-  <div class="form-group">
-    <label for="agreement">Agreement:</label>
-    <textarea class="form-control" id="agreement" name="agreement" rows="3" required></textarea>
+    <div class="form-field">
+      <label for="epimeleiaPaidiwn">Επιμέλεια τέκνων:</label>
+      <textarea class="form-control" id="epimeleiaPaidiwn" name="epimeleiaPaidiwn" rows="3" ></textarea>
+    </div>
+
+  <div class="form-field">
+    <label for="akinitiPeriousia">Agreement:</label>
+    <textarea class="form-control" id="akinitiPeriousia" name="akinitiPeriousia" rows="3" ></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-field">
+      <label for="logariasmoiTrapezwn">Agreement:</label>
+      <textarea class="form-control" id="logariasmoiTrapezwn" name="logariasmoiTrapezwn" rows="3" ></textarea>
+    </div>
+    <div class="form-field">
+      <label for="ix">Ιδιωτικά Οχήματα(Id οχήματος):</label>
+      <input type="text"  id="ix" name="ix" >
+    </div>
+    <input type="submit" value="Submit">
 </form>
+</div>
+</body>
+</html>

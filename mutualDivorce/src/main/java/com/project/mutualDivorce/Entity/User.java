@@ -8,7 +8,6 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +20,7 @@ public class User {
     private int amka;
 
     @Column(name = "role")
-    private int role;
+    private String role;
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -59,11 +58,11 @@ public class User {
         this.amka = amka;
     }
 
-    public int getRole() {
-        return role;
+    public String getRole() {
+       return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

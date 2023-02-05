@@ -14,10 +14,10 @@ public class UserDto implements Serializable {
     private final String surname;
     private final int afm;
     private final int amka;
-    private final int role;
+    private final String role;
     private final List<DivorceFormDto> divorces;
 
-    public UserDto(Long id, String surname, int afm, int amka, int role, List<DivorceFormDto> divorces) {
+    public UserDto(Long id, String surname, int afm, int amka, String role, List<DivorceFormDto> divorces) {
         this.id = id;
         this.surname = surname;
         this.afm = afm;
@@ -42,7 +42,7 @@ public class UserDto implements Serializable {
         return amka;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
