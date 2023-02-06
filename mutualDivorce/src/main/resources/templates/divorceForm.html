@@ -103,7 +103,7 @@
       fetch("/divorces/addForm",{
         method  :"POST",
         headers :{"Content-Type":"application/json"},
-        body: JSON.stringify({husbandAfm,husbandAmka,husbandSurname,wifeAfm,wifeAmka,wifeSurname,reason,epimeleiaPaidiwn,akinitiPeriousia,logariasmoiTrapezwn,ix}),
+        body: JSON.stringify({husbandAfm:event.srcElement[0].value,husbandAmka:event.srcElement[1].value,husbandSurname:event.srcElement[2].value,wifeAfm:event.srcElement[3].value,wifeAmka:event.srcElement[4].value,wifeSurname:event.srcElement[5].value,reason:event.srcElement[6].value,epimeleiaPaidiwn:event.srcElement[7].value,akinitiPeriousia:event.srcElement[8].value,logariasmoiTrapezwn:event.srcElement[9].value,ix:event.srcElement[10].value}),
       })
               .then(function (response){
                 return response.json();
