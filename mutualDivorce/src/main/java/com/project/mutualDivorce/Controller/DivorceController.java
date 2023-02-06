@@ -3,6 +3,7 @@ package com.project.mutualDivorce.Controller;
 import com.project.mutualDivorce.Dto.DivorceFormDto;
 import com.project.mutualDivorce.Entity.Divorce;
 import com.project.mutualDivorce.Service.DivorceService;
+import jakarta.persistence.PostRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class DivorceController {
         this.divorceService = divorceService;
     }
 
-    @GetMapping
+    @GetMapping("/findAll")
     public List<Divorce> findAll() {
         return divorceService.findAll();
     }
@@ -34,6 +35,7 @@ public class DivorceController {
     }
 
 
+    @PostMapping
     public Divorce save(@RequestBody Divorce divorce) {
         return divorceService.save(divorce);
     }
@@ -43,7 +45,7 @@ public class DivorceController {
         divorceService.deleteById(id);
     }
 
-    @PostMapping(path = "/create-divorce-form")
+    @PostMapping(path = "/addForm")
     public ResponseEntity<Divorce> createDivorceForm(@RequestBody DivorceFormDto divorceFormDto) {
         Divorce divorce = divorceService.createDivorceForm(divorceFormDto);
         return new ResponseEntity<>(divorce, HttpStatus.CREATED);

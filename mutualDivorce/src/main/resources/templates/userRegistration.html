@@ -3,88 +3,55 @@
 <head>
     <title>Form Example</title>
 </head>
-<style>
-    .form-container {
-        width: 500px;
-        margin: 0 auto;
-        text-align: center;
-    }
 
-    .form-field {
-        margin: 10px 0;
-    }
-
-    label {
-        font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="text"],
-    textarea {
-        padding: 10px;
-        width: 100%;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    input[type="submit"] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #3e8e41;
-    }
-</style>
 <body>
 <div class="form-container">
 <form id="userRegistration">
     <div class = "form-field">
     <p>Surname: <label for="surname"></label><input type="text" id="surname"></p>
+    </div>
         <div class = "form-field">
     <p>Afm: <label for="afm"></label><input type="text" id="afm"></p>
+        </div>
             <div class = "form-field">
     <p>Amka: <label for="amka"></label><input type="text" id="amka"></p>
+            </div>
                 <div class = "form-field">
     <p>Password: <label for="password"></label><input type="password" id="password"></p>
+                </div>
                     <div class = "form-field">
     <p>Role: <label for="role"></label><input type = "text" id = "role"></p>
+                    </div>
                         <div class = "form-field">
     <p><button type="submit">Submit</button></p>
+                        </div>
+
 </form>
-<script>
-    // Handle form submission
-    document.getElementById("userRegistration").addEventListener("submit", function (event) {
-        event.preventDefault();
-        const surname = document.getElementById("surname").value;
-        const afm = document.getElementById("afm").value;
-        const amka = document.getElementById("amka").value;
-        const password = document.getElementById("password").value;
-        const role = document.getElementById("role").value;
+    <script>
+        document.getElementById("userRegistration").addEventListener("submit",function(event){
+            event.preventDefault();
+
+            //Send data to the server
+            fetch("/users/addUser",{
+                method  :"POST",
+                headers :{"Content-Type":"application/json"},
+                body: JSON.stringify({afm:event.srcElement[1].value,amka:event.srcElement[2].value,surname:event.srcElement[0].value,password:event.srcElement[3].value,role:event.srcElement[4].value}),
+            })
+                .then(function (response){
+                    return response.json();
+                })
+                .then(function (data){
+                    console.log(data);
+                })
+                .catch(function (error){
+                    console.error(error)
+                });
 
 
-        // Send form data to the server
-        fetch("/users/addUser", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ surname,afm,amka,password,role }),
-        })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                console.log(data);
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-    });
-</script>
+        });
+
+
+    </script>
 </div>
 </body>
 </html>

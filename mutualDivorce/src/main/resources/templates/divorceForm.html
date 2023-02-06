@@ -45,7 +45,7 @@
 <body>
 <div class="form-container">
   <h2>Divorce Application</h2>
-  <form action="">
+  <form id="divorceForm">
     <div class = "form-field">
     <label for="husbandAfm">Husband's afm:</label>
     <input type="text" id="husbandAfm" name="husbandAfm" >
@@ -82,11 +82,11 @@
     </div>
 
   <div class="form-field">
-    <label for="akinitiPeriousia">Agreement:</label>
+    <label for="akinitiPeriousia">akinitiPeriousia:</label>
     <textarea class="form-control" id="akinitiPeriousia" name="akinitiPeriousia" rows="3" ></textarea>
   </div>
     <div class="form-field">
-      <label for="logariasmoiTrapezwn">Agreement:</label>
+      <label for="logariasmoiTrapezwn">logariasmoiTrapezwn:</label>
       <textarea class="form-control" id="logariasmoiTrapezwn" name="logariasmoiTrapezwn" rows="3" ></textarea>
     </div>
     <div class="form-field">
@@ -95,6 +95,27 @@
     </div>
     <input type="submit" value="Submit">
 </form>
+  <script>
+    document.getElementById("divorceForm").addEventListener("submit",function(event){
+      event.preventDefault();
+
+      //Send data to the server
+      fetch("/divorces/addForm",{
+        method  :"POST",
+        headers :{"Content-Type":"application/json"},
+        body: JSON.stringify({husbandAfm,husbandAmka,husbandSurname,wifeAfm,wifeAmka,wifeSurname,reason,epimeleiaPaidiwn,akinitiPeriousia,logariasmoiTrapezwn,ix}),
+      })
+              .then(function (response){
+                return response.json();
+              })
+              .then(function (data){
+                console.log(data);
+              })
+              .catch(function (error){
+                console.error(error)
+              });
+    });
+  </script>
 </div>
 </body>
 </html>

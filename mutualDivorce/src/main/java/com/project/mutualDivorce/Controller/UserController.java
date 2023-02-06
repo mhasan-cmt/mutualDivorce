@@ -6,6 +6,7 @@ import com.project.mutualDivorce.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,5 +50,10 @@ public class UserController {
     public ResponseEntity<User> createNewUser(@RequestBody UserDto userDto){
         User user = userService.createNewUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+    @GetMapping("/userRegistration")
+    public String getUserRegistration(Model model){
+        model.addAttribute("userRegistration",new User());
+        return "userRegistration";
     }
 }
