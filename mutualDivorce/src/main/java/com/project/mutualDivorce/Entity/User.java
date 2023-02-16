@@ -22,9 +22,23 @@ public class User {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "password")
+    private String password;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Divorce> divorces;
+
+    public User() {
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Long getId() {
         return id;

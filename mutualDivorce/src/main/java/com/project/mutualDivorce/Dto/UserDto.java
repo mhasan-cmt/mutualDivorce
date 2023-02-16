@@ -15,15 +15,18 @@ public class UserDto implements Serializable {
     private final int afm;
     private final int amka;
     private final String role;
+
+    private final String password;
     private final List<DivorceFormDto> divorces;
 
-    public UserDto(Long id, String surname, int afm, int amka, String role, List<DivorceFormDto> divorces) {
+    public UserDto(Long id, String surname, int afm, int amka, String role, List<DivorceFormDto> divorces,String password) {
         this.id = id;
         this.surname = surname;
         this.afm = afm;
         this.amka = amka;
         this.role = role;
         this.divorces = divorces;
+        this.password = password;
     }
 
     public Long getId() {

@@ -3,7 +3,6 @@ package com.project.mutualDivorce.Controller;
 import com.project.mutualDivorce.Dto.DivorceFormDto;
 import com.project.mutualDivorce.Entity.Divorce;
 import com.project.mutualDivorce.Service.DivorceService;
-import jakarta.persistence.PostRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

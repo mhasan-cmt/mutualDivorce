@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <style>
+        #link {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>SubmissionCompleted</title>
 </head>
 <body>
+<header>
+    <h1>Your form is submitted successfully</h1>
+</header>
+<nav>
+    <ul>
+        <li><a id = "link" href="/home" ></a>Home</li>
+    </ul>
+</nav>
 
+<script>
+    document.getElementById("link").addEventListener("mouseover", function(){
+        this.style.color = "red";
+    });
+
+    document.getElementById("link").addEventListener("mouseout", function(){
+        this.style.color = "blue";
+    });
+</script>
 </body>
 </html>

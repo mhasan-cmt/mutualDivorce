@@ -21,7 +21,7 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    @GetMapping("/find-all")
+    @GetMapping("/findAll")
     public List<User> findAll(){
         System.out.println("find all users");
 

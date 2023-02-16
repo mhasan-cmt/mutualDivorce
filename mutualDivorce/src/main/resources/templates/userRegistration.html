@@ -30,6 +30,7 @@
     <script>
         document.getElementById("userRegistration").addEventListener("submit",function(event){
             event.preventDefault();
+            window.location.replace("/login");
 
             //Send data to the server
             fetch("/users/addUser",{

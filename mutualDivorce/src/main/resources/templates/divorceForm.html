@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Divorce Application</title>
   <style>
     .form-container {
@@ -95,9 +96,11 @@
     </div>
     <input type="submit" value="Submit">
 </form>
+  <p id="output"></p>
   <script>
     document.getElementById("divorceForm").addEventListener("submit",function(event){
       event.preventDefault();
+      window.location.replace("/submit-divorce-form");
 
       //Send data to the server
       fetch("/divorces/addForm",{
@@ -114,6 +117,7 @@
               .catch(function (error){
                 console.error(error)
               });
+
     });
   </script>
 </div>
