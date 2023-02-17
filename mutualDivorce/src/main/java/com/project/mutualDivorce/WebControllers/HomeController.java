@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(){
-        return "home";
+        return "custom-login";
     }
     @GetMapping("/home")
     public  String home2(){
@@ -16,7 +16,11 @@ public class HomeController {
     }
     @GetMapping("/login")
     public String login(){
-        return "login";
+        return "custom-login";
+    }
+    @GetMapping("/logout")
+    public String logout(){
+        return "custom-logout";
     }
     @GetMapping("/submit-divorce-form")
     public String formSubmit(){
