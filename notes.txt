@@ -1,0 +1,12 @@
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("forward:/home");
+        registry.addViewController("/login").setViewName("home");
+        registry.addViewController("/userRegistration").setViewName("userRegistration");
+        registry.addViewController("/home").setViewName("forward:/test");
+    }
+
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        registry.jsp("/templates", ".html");
+    }
