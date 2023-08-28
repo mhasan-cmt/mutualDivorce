@@ -1,31 +1,49 @@
+/*
 package com.project.mutualDivorce.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name="users")
 public class User {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "surname")
+    @Column(nullable = false)
     private String surname;
-    @Column(name = "afm")
+
+    private String username=surname;
+    @Column(nullable = false,unique = true)
     private int afm;
-    @Column(name = "amka")
+    @Column(nullable = false,unique = true)
     private int amka;
 
-    @Column(name = "role")
+    @Column(nullable = false)
     private String role;
 
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
 
-
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinTable(
+            name="users_roles",
+            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+    private List<Role> roles = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Divorce> divorces;
 
@@ -46,6 +64,10 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getSurname() {
@@ -88,3 +110,6 @@ public class User {
         this.divorces = divorces;
     }
 }
+
+
+ */

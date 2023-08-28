@@ -1,57 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Form Example</title>
-</head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Registration</title>
+    <style>
+        .form-container {
+            width: 200px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
+        .form-field {
+            margin: 10px 0;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: large;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="text"],
+        textarea {
+            padding: 10px;
+            width: 100%;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            width: 100%;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        body {
+            background-color: darkcyan;
+        }
+
+        .content {
+            background-color: #ddd;
+            padding: 10px;
+            height: 200px;
+        }
+    </style>
+</head>
 <body>
 <div class="form-container">
-<form id="userRegistration">
-    <div class = "form-field">
-    <p>Surname: <label for="surname"></label><input type="text" id="surname"></p>
-    </div>
-        <div class = "form-field">
-    <p>Afm: <label for="afm"></label><input type="text" id="afm"></p>
+    <form th:action="@{/users/addUser}" th:object="${user}" method="post">
+        <div class="form-field">
+            <p>Surname: <label>
+                <input type="text" th:field="*{surname}" required>
+            </label></p>
         </div>
-            <div class = "form-field">
-    <p>Amka: <label for="amka"></label><input type="text" id="amka"></p>
-            </div>
-                <div class = "form-field">
-    <p>Password: <label for="password"></label><input type="password" id="password"></p>
-                </div>
-                    <div class = "form-field">
-    <p>Role: <label for="role"></label><input type = "text" id = "role"></p>
-                    </div>
-                        <div class = "form-field">
-    <p><button type="submit">Submit</button></p>
-                        </div>
-
-</form>
+        <div class="form-field">
+            <p>Afm: <label>
+                <input type="text" th:field="*{afm}"required>
+            </label></p>
+        </div>
+        <div class="form-field">
+            <p>Amka: <label>
+                <input type="text" th:field="*{amka}"required>
+            </label></p>
+        </div>
+        <div class="form-field">
+            <p>Password: <label>
+                <input type="password" th:field="*{password}"required>
+            </label></p>
+        </div>
+        <div class="form-field">
+            <p>Role: <label>
+                <input type="text" th:field="*{role}"required>
+            </label></p>
+        </div>
+        <div class="form-field">
+            <p><button type="submit">Register</button></p>
+        </div>
+    </form>
     <script>
-        document.getElementById("userRegistration").addEventListener("submit",function(event){
-            event.preventDefault();
-            window.location.replace("/login");
-
-            //Send data to the server
-            fetch("/users/addUser",{
-                method  :"POST",
-                headers :{"Content-Type":"application/json"},
-                body: JSON.stringify({afm:event.srcElement[1].value,amka:event.srcElement[2].value,surname:event.srcElement[0].value,password:event.srcElement[3].value,role:event.srcElement[4].value}),
+        fetch("users/addUser",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({surname:event.srcElement[0].value,afm:event.srcElement[1].value,amka:event.srcElement[2].value,password:event.srcElement[3].value,role:event.srcElement[4].value}),
+        })
+            .then(function(response) {
+                return response.json();
             })
-                .then(function (response){
-                    return response.json();
-                })
-                .then(function (data){
-                    console.log(data);
-                })
-                .catch(function (error){
-                    console.error(error)
-                });
+            .then(function(data) {
+                console.log(data);
 
-
-        });
-
-
+            })
+            .catch(function(error) {
+                console.error(error)
+            });
     </script>
 </div>
 </body>

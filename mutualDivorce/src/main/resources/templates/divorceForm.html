@@ -4,6 +4,7 @@
 
   <title>Divorce Application</title>
   <style>
+
     .form-container {
       width: 500px;
       margin: 0 auto;
@@ -15,6 +16,7 @@
     }
 
     label {
+      font-size: large;
       font-weight: bold;
     }
 
@@ -40,19 +42,22 @@
     input[type="submit"]:hover {
       background-color: #3e8e41;
     }
+    body{
+      background-color: darkcyan; }
   </style>
 
 </head>
 <body>
+
 <div class="form-container">
   <h2>Divorce Application</h2>
   <form id="divorceForm">
     <div class = "form-field">
-    <label for="husbandAfm">Husband's afm:</label>
+    <label for="husbandAfm">Husband's A.F.M:</label>
     <input type="text" id="husbandAfm" name="husbandAfm" >
   </div>
     <div class = "form-field">
-      <label for="husbandAmka">Husband's amka:</label>
+      <label for="husbandAmka">Husband's A.M.K.A:</label>
       <input type="text" id="husbandAmka" name="husbandAmka" >
     </div>
     <div class = "form-field">
@@ -61,12 +66,12 @@
     </div>
 
   <div class="form-field">
-    <label for="wifeAfm">Wife's afm:</label>
+    <label for="wifeAfm">Wife's A.F.M:</label>
     <input type="text" id="wifeAfm" name="wifeAfm" >
   </div>
 
   <div class="form-field">
-    <label for="wifeAmka">Wife's amka:</label>
+    <label for="wifeAmka">Wife's A.M.K.A:</label>
     <input type="text"  id="wifeAmka" name="wifeAmka" >
   </div>
     <div class="form-field">
@@ -83,11 +88,11 @@
     </div>
 
   <div class="form-field">
-    <label for="akinitiPeriousia">akinitiPeriousia:</label>
+    <label for="akinitiPeriousia">Ακίνητη περιουσία:</label>
     <textarea class="form-control" id="akinitiPeriousia" name="akinitiPeriousia" rows="3" ></textarea>
   </div>
     <div class="form-field">
-      <label for="logariasmoiTrapezwn">logariasmoiTrapezwn:</label>
+      <label for="logariasmoiTrapezwn">Τραπεζικοί Λογαριασμοί:</label>
       <textarea class="form-control" id="logariasmoiTrapezwn" name="logariasmoiTrapezwn" rows="3" ></textarea>
     </div>
     <div class="form-field">
@@ -100,24 +105,42 @@
   <script>
     document.getElementById("divorceForm").addEventListener("submit",function(event){
       event.preventDefault();
-      window.location.replace("/submit-divorce-form");
-
+      const form = event.target;
+      const formData = {
+        husbandAfm: form.husbandAfm.value,
+        husbandAmka: form.husbandAmka.value,
+        husbandSurname: form.husbandSurname.value,
+        wifeAmka: form.wifeAmka.value,
+        wifeAfm: form.wifeAfm.value,
+        wifeSurname: form.wifeSurname.value,
+        epimeleiaPaidiwn: form.epimeleiaPaidiwn.value,
+        akinitiPeriousia: form.akinitiPeriousia.value,
+        logariasmoiTrapezwn: form.logariasmoiTrapezwn.value,
+        ix: form.ix.value,
+        reason: form.reason.value,
+      };
       //Send data to the server
       fetch("/divorces/addForm",{
         method  :"POST",
         headers :{"Content-Type":"application/json"},
-        body: JSON.stringify({husbandAfm:event.srcElement[0].value,husbandAmka:event.srcElement[1].value,husbandSurname:event.srcElement[2].value,wifeAfm:event.srcElement[3].value,wifeAmka:event.srcElement[4].value,wifeSurname:event.srcElement[5].value,reason:event.srcElement[6].value,epimeleiaPaidiwn:event.srcElement[7].value,akinitiPeriousia:event.srcElement[8].value,logariasmoiTrapezwn:event.srcElement[9].value,ix:event.srcElement[10].value}),
+        body: JSON.stringify(formData)//{husbandAfm:event.srcElement[0].value,husbandAmka:event.srcElement[1].value,husbandSurname:event.srcElement[2].value,wifeAfm:event.srcElement[3].value,wifeAmka:event.srcElement[4].value,wifeSurname:event.srcElement[5].value,reason:event.srcElement[6].value,epimeleiaPaidiwn:event.srcElement[7].value,akinitiPeriousia:event.srcElement[8].value,logariasmoiTrapezwn:event.srcElement[9].value,ix:event.srcElement[10].value}),
       })
-              .then(function (response){
-                return response.json();
+              .then(function (response) {
+                if (response.ok) {
+                  return response.json();
+                } else {
+                  throw new Error("Request failed");
+                }
               })
-              .then(function (data){
+              .then(function (data) {
                 console.log(data);
+                window.location.replace("/submit-divorce-form");
+                document.getElementById("output").textContent = "Form submitted successfully!";
               })
-              .catch(function (error){
-                console.error(error)
+              .catch(function (error) {
+                console.error(error);
+                document.getElementById("output").textContent = "An error occurred.";
               });
-
     });
   </script>
 </div>

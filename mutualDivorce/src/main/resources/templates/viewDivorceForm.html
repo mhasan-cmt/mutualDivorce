@@ -2,9 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>View-Forms</title>
+    <style>
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        .form-field {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
+<div class = "form-field" id = "viewDivorceForm">
+    <p><button type="submit">Submit</button></p>
+</div>
+<script>
+    document.getElementById("viewDivorceForm").addEventListener("submit",function(event){
+        event.preventDefault();
+        window.location.replace("/viewDivorceForm")
 
+        //GET data FROM the server
+        fetch("/divorces/findAll",{
+            method  :"GET",
+            headers :{"Content-Type":"application/json"},
+            body: JSON.stringify({afm:event.srcElement[1].value,amka:event.srcElement[2].value,surname:event.srcElement[0].value,password:event.srcElement[3].value,role:event.srcElement[4].value}),
+        })
+            .then(function (response){
+                return response.json();
+            })
+            .then(function (data){
+                console.log(data);
+            })
+            .catch(function (error){
+                console.error(error)
+            });
+
+
+    });
+
+
+</script>
 </body>
 </html>

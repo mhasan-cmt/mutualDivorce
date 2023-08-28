@@ -1,84 +1,27 @@
 package com.project.mutualDivorce.Dto;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import com.project.mutualDivorce.Entity.User;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 
-/**
- * A DTO for the {@link User} entity
- */
-public class UserDto implements Serializable {
-    private final Long id;
-    private final String surname;
-    private final int afm;
-    private final int amka;
-    private final String role;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 
-    private final String password;
-    private final List<DivorceFormDto> divorces;
-
-    public UserDto(Long id, String surname, int afm, int amka, String role, List<DivorceFormDto> divorces,String password) {
-        this.id = id;
-        this.surname = surname;
-        this.afm = afm;
-        this.amka = amka;
-        this.role = role;
-        this.divorces = divorces;
-        this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public int getAfm() {
-        return afm;
-    }
-
-    public int getAmka() {
-        return amka;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public List<DivorceFormDto> getDivorces() {
-        return divorces;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserDto entity = (UserDto) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.surname, entity.surname) &&
-                Objects.equals(this.afm, entity.afm) &&
-                Objects.equals(this.amka, entity.amka) &&
-                Objects.equals(this.role, entity.role) &&
-                Objects.equals(this.divorces, entity.divorces);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, surname, afm, amka, role, divorces);
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "surname = " + surname + ", " +
-                "afm = " + afm + ", " +
-                "amka = " + amka + ", " +
-                "role = " + role + ", " +
-                "divorces = " + divorces + ")";
-    }
+public class UserDto {
+    private Long id;
+    @NotEmpty
+    private String surname;
+    @NotEmpty(message = "Password cannot be empty")
+    private String password;
+    @NotEmpty
+    private String afm;
+    @NotEmpty
+    private String amka;
+    @NotEmpty
+    private String role;
 }

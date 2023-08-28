@@ -22,7 +22,7 @@ public class DivorceService {
         return divorceRepository.findAll();
     }
     public Optional<Divorce> findById(long id){
-       return divorceRepository.findById(id);
+       return Optional.ofNullable(divorceRepository.findById(id));
    }
     public Divorce save(Divorce divorce){
         return divorceRepository.save(divorce);

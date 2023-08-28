@@ -4,25 +4,65 @@
     <title>Divorce Application</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+    .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    .content {
+        background-color: #ddd;
+        padding: 10px;
+        height: 200px;
+    }
+    {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+
 <body>
 <header>
-    <h1>Divorce Application</h1>
+    <div class="content">
+        <h1>Υπηρεσία Συναινετικού διαζυγίου</h1>
+    </div>
 </header>
-<nav>
-    <ul>
-        <li><a href="/logout">Logout</a></li>
-        <li><a href="/divorceForm" target = "_self">Apply for Divorce</a></li>
-        <li><a href="/userRegistration" target="_self">Register</a></li>
-    </ul>
-</nav>
+
+
+        <div class = "topnav">
+        <a href="/logout">Logout</a>
+        <a href="/divorceForm" target = "_self">Apply for Divorce</a>
+        <a href="/userRegistration" target="_self">Register</a>
+            <a href="/viewDivorceForm" target="_self">View Divorces in DB</a>
+            <a href="/admin" target="_self">Administrator access</a>
+
+        </div>
+
 
 <main>
-    <h2>Welcome to the Divorce Application</h2>
-    <p>This application allows you to apply for a divorce online and track the status of your application.</p>
+    <h3>Welcome to the Divorce Application</h3>
+    <p>This application allows you to apply for a divorce online .</p>
     <p>To get started, click on the "Apply for Divorce" link in the navigation menu.</p>
 </main>
 <footer>
-    <p>Copyright ©2022 Divorce Application</p>
+    <p>Copyright ©2022 Divorce Application Ομαδα 38</p>
 </footer>
+
 </body>
 </html>
