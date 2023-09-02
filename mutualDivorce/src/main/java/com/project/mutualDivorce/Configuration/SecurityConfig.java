@@ -36,8 +36,10 @@ public class SecurityConfig {
                                 .requestMatchers("/viewDivorceForm").hasRole("ROLE_ADMIN")
                                 .requestMatchers("/home").permitAll()
                                 .requestMatchers("/simvolaiografikiPraksi").hasRole("ROLE_ADMIN")
-                                .requestMatchers("/submit-divorce-form").permitAll()
                                 .requestMatchers("/divorceForm").permitAll()
+                                .requestMatchers("/divorces/submit-divorce-form").permitAll()
+                                .requestMatchers("/styles.css").permitAll().anyRequest().authenticated()
+
                 )
                 .formLogin(
                         form -> form
@@ -50,16 +52,18 @@ public class SecurityConfig {
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
+
                 )
-                ;
+
+        ;
         return http.build();
     }
 
-    @Autowired
+
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+            auth
+                    .userDetailsService(userDetailsService)
+                    .passwordEncoder(passwordEncoder());
     }
 }
 

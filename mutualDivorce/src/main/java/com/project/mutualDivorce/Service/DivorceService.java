@@ -21,8 +21,8 @@ public class DivorceService {
     public List<Divorce> findAll(){
         return divorceRepository.findAll();
     }
-    public Optional<Divorce> findById(long id){
-       return Optional.ofNullable(divorceRepository.findById(id));
+    public Divorce findById(long id){
+       return divorceRepository.findById(id);
    }
     public Divorce save(Divorce divorce){
         return divorceRepository.save(divorce);
@@ -39,8 +39,12 @@ public class DivorceService {
        divorceForm.setWifeAfm(divorceFormDto.getWifeAfm());
        divorceForm.setWifeAmka(divorceFormDto.getWifeAmka());
        divorceForm.setWifeSurname(divorceFormDto.getWifeSurname());
+       divorceForm.setEpimeleiaPaidiwn(divorceFormDto.getEpimeleiaPaidiwn());
+       divorceForm.setAkinitiPeriousia(divorceFormDto.getAkinitiPeriousia());
+       divorceForm.setLogariasmoiTrapezwn(divorceFormDto.getLogariasmoiTrapezwn());
        divorceForm = divorceRepository.save(divorceForm);
-        return divorceForm;
+
+       return divorceForm;
     }
 
 }

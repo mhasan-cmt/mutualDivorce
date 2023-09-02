@@ -1,7 +1,10 @@
 package com.project.mutualDivorce.Controller;
 
+import com.project.mutualDivorce.Dto.DivorceFormDto;
 import com.project.mutualDivorce.Dto.UserDto;
+import com.project.mutualDivorce.Entity.Divorce;
 import com.project.mutualDivorce.Entity.User;
+import com.project.mutualDivorce.Service.DivorceService;
 import com.project.mutualDivorce.Service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -12,22 +15,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AuthController {
     private UserService userService;
 
+
     public AuthController(UserService userService){
         this.userService = userService;
     }
-    /*
+
     @GetMapping("/registeredUsers")
     public String registeredUsers(){
         return "registeredUsers";
 
     }
 
-     */
+
     // handler method to handle home page request
     @GetMapping("/index")
     public String index(){
@@ -55,6 +60,13 @@ public class AuthController {
         model.addAttribute("user", user);
         return "register";
     }
+    @GetMapping("/divorceForm")
+    public String showDivorceForm(Model model){
+        DivorceFormDto divorceFormDto = new DivorceFormDto();
+        model.addAttribute("divorceForm",divorceFormDto);
+        return "divorceForm";
+    }
+
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
@@ -99,13 +111,4 @@ public class AuthController {
         return "simvolaiografikiPraksi";
     }
 */
-    @GetMapping("/viewDivorceForm")
-    public String viewDivorceForm(){
-        return "viewDivorceForm";
-    }
-    @GetMapping("/submit-divorce-form")
-    public String formSubmit(){
-        return "submit-divorce-form";
-    }
-
 }

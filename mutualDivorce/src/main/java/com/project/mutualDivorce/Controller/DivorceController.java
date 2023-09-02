@@ -6,12 +6,14 @@ import com.project.mutualDivorce.Service.DivorceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/divorces")
 public class DivorceController {
     @Autowired
@@ -29,7 +31,7 @@ public class DivorceController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Divorce> findById(@PathVariable long id) {
+    public Divorce findById(@PathVariable long id) {
         return divorceService.findById(id);
     }
 
@@ -48,5 +50,22 @@ public class DivorceController {
     public ResponseEntity<Divorce> createDivorceForm(@RequestBody DivorceFormDto divorceFormDto) {
         Divorce divorce = divorceService.createDivorceForm(divorceFormDto);
         return new ResponseEntity<>(divorce, HttpStatus.CREATED);
+    }
+    @GetMapping("/divorceForm")
+    public String getDivorceForm(Model model) {
+        model.addAttribute("divorceForm", new Divorce());
+        return "divorceForm";
+    }
+    @GetMapping("/viewDivorceForm")
+    public String viewDivorceForm(){
+        return "viewDivorceForm";
+    }
+    @GetMapping("/submit-divorce-form")
+    public String submitDivorceForm(){
+        return "/submit-divorce-form";
+    }
+    @GetMapping("/simvolaiografikiPraksi")
+    public String simvolaiografikiPraksi(){
+        return "simvolaiografikiPraksi";
     }
 }

@@ -49,9 +49,13 @@
 </head>
 <body>
 
-<div class="form-container">
+<div class="card-body">
   <h2>Divorce Application</h2>
-  <form id="divorceForm">
+  <form method ="post"
+        role="form"
+        th:action="@{/divorceForm/addForm}"
+        th:objec="${divorceForm}"
+  >
     <div class = "form-field">
     <label for="husbandAfm">Husband's A.F.M:</label>
     <input type="text" id="husbandAfm" name="husbandAfm" >
@@ -99,11 +103,14 @@
       <label for="ix">Ιδιωτικά Οχήματα(Id οχήματος):</label>
       <input type="text"  id="ix" name="ix" >
     </div>
+
+
     <input type="submit" value="Submit">
 </form>
   <p id="output"></p>
   <script>
-    document.getElementById("divorceForm").addEventListener("submit",function(event){
+    document.querySelector("form").addEventListener("submit", function(event) {
+
       event.preventDefault();
       const form = event.target;
       const formData = {
@@ -134,7 +141,7 @@
               })
               .then(function (data) {
                 console.log(data);
-                window.location.replace("/submit-divorce-form");
+                window.location.href="/submit-divorce-form";
                 document.getElementById("output").textContent = "Form submitted successfully!";
               })
               .catch(function (error) {
