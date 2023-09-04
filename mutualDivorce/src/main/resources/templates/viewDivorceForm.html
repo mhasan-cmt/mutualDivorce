@@ -2,54 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View-Forms</title>
-    <style>
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #3e8e41;
-        }
-        .form-field {
-            margin: 10px 0;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Divorce Forms</title>
+    <!-- Include any additional CSS stylesheets for styling -->
+    <link rel="stylesheet" href="path/to/your/styles.css">
+    <!-- Add a link to Bootstrap CSS if you are using Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
 </head>
 <body>
-<div class = "form-field" id = "viewDivorceForm">
-    <p><button type="submit">Submit</button></p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/admin.html">Admin Dashboard</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>View Divorce Forms</h1>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>ΑΦΜ Συζήγου Α</th>
+        <th>ΑΜΚΑ Συζήγου Α</th>
+        <th>Επίθετο Συζήγου Α</th>
+        <th>ΑΦΜ Συζήγου Β</th>
+        <th>ΑΜΚΑ Συζήγου Β</th>
+        <th>Επίθετο Συζήγου Β</th>
+        <th>Επιμέλεια παιδιών</th>
+        <th>Ιδιοκτησία Ακίνητης Περιουσίας</th>
+        <th>Τραπεζικοί Λογαριασμοί</th>
+        <th>Ιδιωτικά Οχήματα</th>
+        <th>Λόγος χωρισμού</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="divorceForm : ${divorceForms}">
+        <td th:text="${divorceForm.id}"></td>
+        <td th:text="${divorceForm.husbandAfm}"></td>
+        <td th:text="${divorceForm.husbandAmka}"></td>
+        <td th:text="${divorceForm.husbandSurname}"></td>
+        <td th:text="${divorceForm.wifeAfm}"></td>
+        <td th:text="${divorceForm.wifeAmka}"></td>
+        <td th:text="${divorceForm.wifeSurname}"></td>
+        <td th:text="${divorceForm.epimeleiaPaidiwn}"></td>
+        <td th:text="${divorceForm.akinitiPeriousia}"></td>
+        <td th:text="${divorceForm.logariasmoiTrapezwn}"></td>
+        <td th:text="${divorceForm.ix}"></td>
+        <td th:text="${divorceForm.reason}"></td>
+    </tr>
+    </tbody>
+</table>
 </div>
-<script>
-    document.getElementById("viewDivorceForm").addEventListener("submit",function(event){
-        event.preventDefault();
-        window.location.replace("/viewDivorceForm")
-
-        //GET data FROM the server
-        fetch("/divorces/findAll",{
-            method  :"GET",
-            headers :{"Content-Type":"application/json"},
-            body: JSON.stringify({afm:event.srcElement[1].value,amka:event.srcElement[2].value,surname:event.srcElement[0].value,password:event.srcElement[3].value,role:event.srcElement[4].value}),
-        })
-            .then(function (response){
-                return response.json();
-            })
-            .then(function (data){
-                console.log(data);
-            })
-            .catch(function (error){
-                console.error(error)
-            });
-
-
-    });
-
-
-</script>
 </body>
 </html>

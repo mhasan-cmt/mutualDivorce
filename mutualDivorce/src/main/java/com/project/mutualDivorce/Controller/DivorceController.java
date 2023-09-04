@@ -57,7 +57,9 @@ public class DivorceController {
         return "divorceForm";
     }
     @GetMapping("/viewDivorceForm")
-    public String viewDivorceForm(){
+    public String viewDivorceForms(Model model) {
+        List<Divorce> divorceForms = divorceService.findAll();
+        model.addAttribute("divorceForms", divorceForms);
         return "viewDivorceForm";
     }
     @GetMapping("/submit-divorce-form")

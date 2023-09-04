@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
                            PasswordEncoder passwordEncoder) {
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
     }
     @Override
-    public void saveUser(@Valid UserDto userDto) {
+    public User saveUser(@Valid UserDto userDto) {
         User user = new User();
         user.setSurname(userDto.getSurname());
         user.setAfm(userDto.getAfm());
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Arrays.asList(roleAdmin, roleUser));
 
         userRepository.save(user);
+        return user;
     }
 
     @Override
@@ -72,7 +74,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream()
-                .map((user) -> mapToUserDto(user))
+                .map(this::mapToUserDto)
                 .collect(Collectors.toList());
     }
 
@@ -83,8 +85,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(long id) {
-
-
+        userRepository.deleteById(id);
     }
 
 
@@ -95,14 +96,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(UserDto userDto) {
-        return null;
+        User user = new User();
+        user.setSurname(userDto.getSurname());
+        user.setAfm(userDto.getAfm());
+        user.setAmka(userDto.getAmka());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setUsername(userDto.getSurname());
+
+        // Assign roles to the user
+        Role roleAdmin = roleRepository.findByName("ROLE_ADMIN");
+        Role roleUser = roleRepository.findByName("ROLE_USER");
+        user.setRoles(Arrays.asList(roleAdmin, roleUser));
+
+        // Save the user to the repository
+        return userRepository.save(user);
     }
+
 
     private UserDto mapToUserDto(User user) {
         UserDto userDto = new UserDto();
-        userDto.setSurname(userDto.getSurname());
+        userDto.setId(user.getId());
+        userDto.setSurname(user.getSurname());
         userDto.setAfm(user.getAfm());
         userDto.setAmka(user.getAmka());
+        userDto.setRole(user.getRoles().toString());
 
         return userDto;
     }

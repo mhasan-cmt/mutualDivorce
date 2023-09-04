@@ -29,16 +29,21 @@ public class SecurityConfig {
 
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
+                        authorize
+                                .requestMatchers("/register/**").permitAll()
+                                .requestMatchers("/divorces/**").permitAll()
+                                .requestMatchers("divorceForm/**").permitAll()
                                 .requestMatchers("/index").permitAll()
-                                .requestMatchers("/admin").hasRole("ROLE_ADMIN")
-                                .requestMatchers("/registeredUsers").permitAll()
-                                .requestMatchers("/viewDivorceForm").hasRole("ROLE_ADMIN")
+                                .requestMatchers("/viewDivorceForm").permitAll()
                                 .requestMatchers("/home").permitAll()
+                                .requestMatchers("/styles.css").permitAll()
+
+                                .requestMatchers("/admin").hasRole("ROLE_ADMIN")
+                                .requestMatchers("/users/**").hasRole("ROLE_ADMIN")
+                                .requestMatchers("/registeredUsers").hasRole("ROLE_ADMIN")
                                 .requestMatchers("/simvolaiografikiPraksi").hasRole("ROLE_ADMIN")
-                                .requestMatchers("/divorceForm").permitAll()
-                                .requestMatchers("/divorces/submit-divorce-form").permitAll()
-                                .requestMatchers("/styles.css").permitAll().anyRequest().authenticated()
+
+                                .anyRequest().authenticated()
 
                 )
                 .formLogin(
