@@ -45,31 +45,20 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 
      */
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String surname) throws UsernameNotFoundException {
-        User user = userRepository.findUserBySurname(surname);
+    public UserDetails loadUserByUsername(String surName) throws UsernameNotFoundException {
+        User user = userRepository.findUserBySurname(surName);
 
         if (user != null) {
-            return new org.springframework.security.core.userdetails.User(
-                    user.getSurname(),
-                    user.getPassword(),
-                    mapRolesToAuthorities(user.getRoles())
-            );
-
+            return user;
         } else {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-    }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
-                .collect(Collectors.toList());
     }
 }

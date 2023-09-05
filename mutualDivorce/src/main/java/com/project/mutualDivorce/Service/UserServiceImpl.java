@@ -36,29 +36,20 @@ public class UserServiceImpl implements UserService {
         user.setSurname(userDto.getSurname());
         user.setAfm(userDto.getAfm());
         user.setAmka(userDto.getAmka());
-        user.setPassword(userDto.getPassword());
-        user.setId(userDto.getId());
         user.setUsername(userDto.getSurname());
         // encrypt the password using spring security
 
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        Role roleAdmin = roleRepository.findByName("ROLE_ADMIN");
-        if (roleAdmin == null) {
-            roleAdmin = new Role();
-            roleAdmin.setName("ROLE_ADMIN");
-            roleAdmin = roleRepository.save(roleAdmin);
-        }
-
-        Role roleUser = roleRepository.findByName("ROLE_USER");
-        if (roleUser == null) {
-            roleUser = new Role();
-            roleUser.setName("ROLE_USER");
-            roleUser = roleRepository.save(roleUser);
+        Role role = roleRepository.findByName(userDto.getRole());
+        if (role == null) {
+            role = new Role();
+            role.setName("ROLE_USER");
+            role = roleRepository.save(role);
         }
 
         // Assign roles to the user
-        user.setRoles(Arrays.asList(roleAdmin, roleUser));
+        user.setRoles(List.of(role));
 
         userRepository.save(user);
         return user;

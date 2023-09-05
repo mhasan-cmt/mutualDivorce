@@ -7,6 +7,7 @@ import com.project.mutualDivorce.Entity.User;
 import com.project.mutualDivorce.Service.DivorceService;
 import com.project.mutualDivorce.Service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +40,8 @@ public class AuthController {
         return "index";
     }
     @GetMapping("/home")
-    public String home() {
+    public String home(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("user", user);
         return "home";
     }
     @GetMapping("/admin")
