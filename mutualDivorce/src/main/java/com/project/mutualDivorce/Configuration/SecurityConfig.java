@@ -30,34 +30,31 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //http.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests.anyRequest().permitAll())
-        //.csrf().disable();
+        http
+                .csrf().disable()
+                .authorizeHttpRequests(authorize -> {
+                    authorize
+                            .requestMatchers(WHITE_LIST).permitAll()
+                            .requestMatchers(ADMIN_URLS).hasRole("ADMIN")
+                            .anyRequest().authenticated();
+                })
+                .formLogin(form -> {
+                    form
+                            .loginPage("/login")
+                            .loginProcessingUrl("/login")
+                            .defaultSuccessUrl("/home", true) // Redirect to home page on successful login
+                            .permitAll();
+                })
+                .logout(logout -> {
+                    logout
+                            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                            .logoutSuccessUrl("/logout-success")
+                            .permitAll();
+                });
 
-        http.csrf().disable()
-                .authorizeHttpRequests((authorize) ->
-                        authorize
-                                .requestMatchers(WHITE_LIST).permitAll()
-                                .requestMatchers(ADMIN_URLS).hasRole("ADMIN")
-                                .anyRequest().authenticated()
-
-                )
-                .formLogin(
-                        form -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/home", true) // Redirect to home page on successful login
-                                .permitAll()
-                )
-                .logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .permitAll()
-
-                )
-
-        ;
         return http.build();
     }
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

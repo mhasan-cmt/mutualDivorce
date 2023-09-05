@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>Divorce Application</title>
     <link rel="stylesheet" href="styles.css">
@@ -50,7 +50,7 @@
         <a href="/divorceForm" target = "_self">Apply for Divorce</a>
         <a href="/userRegistration" target="_self">Register</a>
             <a href="/viewDivorceForm" target="_self">View Divorces in DB</a>
-            <a href="/admin" target="_self">Administrator access</a>
+            <a th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')"  target="_self">Administrator access</a>
 
         </div>
 
