@@ -2,6 +2,7 @@
 
     import com.project.mutualDivorce.Dto.DivorceFormDto;
     import com.project.mutualDivorce.Entity.Divorce;
+    import com.project.mutualDivorce.Entity.User;
     import com.project.mutualDivorce.Repository.DivorceRepository;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.stereotype.Service;
@@ -43,9 +44,13 @@
            divorceForm.setAkinitiPeriousia(divorceFormDto.getAkinitiPeriousia());
            divorceForm.setLogariasmoiTrapezwn(divorceFormDto.getLogariasmoiTrapezwn());
            divorceForm.setReason(divorceFormDto.getReasonOfDivorce());
+           divorceForm.setUser(divorceFormDto.getUser());
            divorceForm = divorceRepository.save(divorceForm);
 
            return divorceForm;
         }
 
+        public List<Divorce> findAllByUser(User user) {
+            return divorceRepository.findAllByUser(user).orElse(null);
+        }
     }

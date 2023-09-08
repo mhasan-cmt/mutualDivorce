@@ -33,7 +33,7 @@ import jakarta.persistence.*;
         @Column(name = "reason")
         private String reason;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

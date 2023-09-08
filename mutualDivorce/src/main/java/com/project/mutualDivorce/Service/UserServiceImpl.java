@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
         userDto.setSurname(user.getSurname());
         userDto.setAfm(user.getAfm());
         userDto.setAmka(user.getAmka());
-        userDto.setRole(user.getRoles().toString());
+        userDto.setRole(user.getRoles().get(0).getName());
 
         return userDto;
     }

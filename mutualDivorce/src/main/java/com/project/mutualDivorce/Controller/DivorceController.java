@@ -2,10 +2,12 @@ package com.project.mutualDivorce.Controller;
 
 import com.project.mutualDivorce.Dto.DivorceFormDto;
 import com.project.mutualDivorce.Entity.Divorce;
+import com.project.mutualDivorce.Entity.User;
 import com.project.mutualDivorce.Service.DivorceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +49,8 @@ public class DivorceController {
     }
 
     @PostMapping(path = "/addForm")
-    public ResponseEntity<Divorce> createDivorceForm(@RequestBody DivorceFormDto divorceFormDto) {
+    public ResponseEntity<Divorce> createDivorceForm(@RequestBody DivorceFormDto divorceFormDto,@AuthenticationPrincipal User user) {
+        divorceFormDto.setUser(user);
         Divorce divorce = divorceService.createDivorceForm(divorceFormDto);
         return new ResponseEntity<>(divorce, HttpStatus.CREATED);
     }
@@ -56,9 +59,15 @@ public class DivorceController {
         model.addAttribute("divorceForm", new Divorce());
         return "divorceForm";
     }
+
     @GetMapping("/viewDivorceForm")
-    public String viewDivorceForms(Model model) {
-        List<Divorce> divorceForms = divorceService.findAll();
+    public String viewDivorceForms(Model model, @AuthenticationPrincipal User user) {
+        List<Divorce> divorceForms;
+        if (user.getRoles().contains("ROLE_ADMIN")) {
+            divorceForms = divorceService.findAll();
+        } else {
+            divorceForms = divorceService.findAllByUser(user);
+        }
         model.addAttribute("divorceForms", divorceForms);
         return "viewDivorceForm";
     }

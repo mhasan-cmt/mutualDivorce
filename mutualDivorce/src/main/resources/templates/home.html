@@ -54,11 +54,18 @@
 <div class="topnav">
     <th:block sec:authorize="isAuthenticated()">
         <a th:href="@{/logout}">Logout</a>
-        <a th:href="@{/registeredUsers}" target="_self">Registered Users</a>
         <a th:href="@{/divorceForm}" target="_self">Apply for Divorce</a>
         <a th:href="@{/divorces/viewDivorceForm}" target="_self">View Divorces in DB</a>
-        <a th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')" target="_self">Administrator access</a>
+        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="@{/registeredUsers}" target="_self">Registered Users</a>
+        <a th:href="@{/admin}" target="_self">Administrator access</a>
+        </th:block>
     </th:block>
+    <th:block sec:authorize="!isAuthenticated()">
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+    </th:block>
+
 
 
 
@@ -68,7 +75,7 @@
 <main>
     <h3>Welcome to the Divorce Application</h3>
     <p>This application allows you to apply for a divorce online .</p>
-    <p>To get started, click on the "Apply for Divorce" link in the navigation menu.</p>
+    <p>To get started, Log-in/register and click on the "Apply for Divorce" link in the navigation menu.</p>
 </main>
 <footer>
     <p>Copyright ©2022 Divorce Application Ομαδα 38</p>

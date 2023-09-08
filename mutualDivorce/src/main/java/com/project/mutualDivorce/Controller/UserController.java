@@ -56,12 +56,12 @@ public class UserController{
         User user = userService.addUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
-    @GetMapping("/registeredUsers")
-    public String registeredUsers(Model model) {
-        List<UserDto> users = userService.findAllUsers();
-        model.addAttribute("users", users);
-        return "registeredUsers";
-    }
+//    @GetMapping("/registeredUsers")
+//    public String registeredUsers(Model model) {
+//        List<UserDto> users = userService.findAllUsers();
+//        model.addAttribute("users", users);
+//        return "registeredUsers";
+//    }
 
 
 }
