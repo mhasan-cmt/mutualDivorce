@@ -56,6 +56,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Registered Users</title>
+  <link rel="stylesheet" th:href="@{/css/lib/datatable.min.css}">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -127,6 +128,7 @@
   </tbody>
 </table>
 <button onclick="window.location.href='/admin'">Go Back to Admin Page</button>
+<script th:src="@{/js/lib/datatable.min.js}"></script>
 <script>
   function deleteUser(userId) {
     console.log('deleteUser function called with userID:', userId);

@@ -56,7 +56,7 @@
         <a th:href="@{/logout}">Logout</a>
         <a th:href="@{/registeredUsers}" target="_self">Registered Users</a>
         <a th:href="@{/divorceForm}" target="_self">Apply for Divorce</a>
-        <a th:href="@{/viewDivorceForm}" target="_self">View Divorces in DB</a>
+        <a th:href="@{/divorces/viewDivorceForm}" target="_self">View Divorces in DB</a>
         <a th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')" target="_self">Administrator access</a>
     </th:block>
 
