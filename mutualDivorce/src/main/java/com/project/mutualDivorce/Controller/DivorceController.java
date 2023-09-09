@@ -63,7 +63,7 @@ public class DivorceController {
     @GetMapping("/viewDivorceForm")
     public String viewDivorceForms(Model model, @AuthenticationPrincipal User user) {
         List<Divorce> divorceForms;
-        if (user.getRoles().contains("ROLE_ADMIN")) {
+        if (user.getRoles().get(0).getName().equals("ROLE_ADMIN")) {
             divorceForms = divorceService.findAll();
         } else {
             divorceForms = divorceService.findAllByUser(user);
